@@ -24,11 +24,7 @@ const newPost = JSON.stringify({
   userId: 1,
 });
 
-//   const createPost = (post) => {
-//     axios.post('https://jsonplaceholder.typicode.com/posts',(res)=>{
-//     console.log(res.data)
-//     })
-//   };
+
 const createPost = (post) => {
   axios
     .post("https://jsonplaceholder.typicode.com/posts", post)
@@ -40,7 +36,7 @@ const createPost = (post) => {
       console.log(error);
     });
 };
-// createPost(newPost);
+createPost(newPost);
 
 const newPost2 = JSON.stringify({
   id: 1,
@@ -68,10 +64,10 @@ const getUsers = async() => {
         console.log(response.data);
         return response.data;
       } catch (err) {
-        // throw err;
+        throw err;
       }
   };
-//   getUsers()
+  getUsers()
 
 
   const saveUsers = async() => {
