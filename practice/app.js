@@ -24,7 +24,6 @@ const newPost = JSON.stringify({
   userId: 1,
 });
 
-
 const createPost = (post) => {
   axios
     .post("https://jsonplaceholder.typicode.com/posts", post)
@@ -49,36 +48,35 @@ const updatePost = (id, data) => {
   axios
     .put(`https://jsonplaceholder.typicode.com/posts/${id}`, data)
     .then(function (response) {
-        console.log("updatePost", response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      console.log("updatePost", response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 updatePost(1, newPost2);
 
-const getUsers = async() => {
-    try {
-        const response = await axios.get("https://jsonplaceholder.typicode.com/users")
-        console.log(response.data);
-        return response.data;
-      } catch (err) {
-        throw err;
-      }
-  };
-  getUsers()
+const getUsers = async () => {
+  try {
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/users"
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
+getUsers();
 
+const saveUsers = async () => {
+  const users = await getUsers();
+  console.log(users);
 
-  const saveUsers = async() => {
-      const users = await getUsers();
-      console.log(users)
-      
-       
-    fs.writeFile("users.txt",JSON.stringify(users), (err) => {
-        if (err) throw err;
-        console.log("The file has been saved");
-      });
-    
-  };
-  saveUsers()
+  fs.writeFile("users.txt", JSON.stringify(users), (err) => {
+    if (err) throw err;
+    console.log("The file has been saved");
+  });
+};
+saveUsers();
